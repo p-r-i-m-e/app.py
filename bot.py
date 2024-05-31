@@ -24,30 +24,30 @@ def respond(client, message):
         message.reply_text('Lee lar Kmkl')
     elif 'နေကောင်းလား'  in user_message:
         message.reply_text("ကောင်းတယ်")
-     elif 'ဘယ်သူလည်း' in user_message:
-        update.message.reply_text("မင်းဖေ")
+    elif 'ဘယ်သူလည်း ' in user_message:
+        message.reply_text("မင်းဖေ")
     elif 'ကောင်မလေး' in user_message:
-        update.message.reply_text(" S FA ကောင်")
+        message.reply_text(" S FA ကောင်")
     elif 'ကောင်လေး' in user_message:
-        update.message.reply_text(" ဘဲပစ်မ ")
+        message.reply_text(" ဘဲပစ်မ ")
     elif 'စားပြီးပြီလား' in user_message:
-        update.message.reply_text(" မစားရသေးဘူး၊ကျွေးမှာလား? ")
+        message.reply_text(" မစားရသေးဘူး၊ကျွေးမှာလား? ")
     elif 'ဘာလုပ်' in user_message:
-        update.message.reply_text("စော်နဲ့ချက်")
+        message.reply_text("စော်နဲ့ချက်")
     elif 'ေစာ်ရှိလား' in user_message:
-        update.message.reply_text("သုံးယောက်တောင် ")
+        message.reply_text("သုံးယောက်တောင် ")
     elif 'ဘဲရှိလား' in user_message:
-        update.message.reply_text(" သုံးကောင်ရှိ ")
+        message.reply_text(" သုံးကောင်ရှိ ")
     elif 'နာမည်ဘယ်လုိ‌ေခါ်လည်း' in user_message:
-        update.message.reply_text(" ဆရာကြီး")
+        message.reply_text(" ဆရာကြီး")
     elif '‌ေစာ်ရှာ‌ေပး' in user_message:
-        update.message.reply_text(" ငှက်ပျောပင်စိုက်")
+        message.reply_text(" ငှက်ပျောပင်စိုက်")
     elif 'ချစ်လား' in user_message:
-        update.message.reply_text(" သေလိုက် ")
+        message.reply_text(" သေလိုက် ")
     elif 'ချစ်တယ်' in user_message:
-        update.message.reply_text("ကောင်မလေးရှိတယ် ")
+        message.reply_text("ကောင်မလေးရှိတယ် ")
     elif 'ကောင်မလေးရှာ‌ေပး' in user_message:
-        update.message.reply_text(" ငှက်ပျောပင်စိုက် ")
+        message.reply_text(" ငှက်ပျောပင်စိုက် ")
     # Add more response conditions here...
     else:
         message.reply_text("လူနားလည်အောင်ပြော")
