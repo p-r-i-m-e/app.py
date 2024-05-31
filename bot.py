@@ -1,12 +1,11 @@
-from telegram import Update
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 # Define a function to handle the /start command
-def start(update: Update, context: CallbackContext) -> None:
+def start(update, context):
     update.message.reply_text('Hi! I am Xiu.')
 
 # Define a function to handle normal messages
-def respond(update: Update, context: CallbackContext) -> None:
+def respond(update, context):
     user_message = update.message.text.lower()
     
     # Define responses based on user messages
@@ -44,11 +43,12 @@ def respond(update: Update, context: CallbackContext) -> None:
         update.message.reply_text("လူနားလည်အောင်ပြော")
 
 # Function to create the application and add handlers
-def create_app(token: str) -> Application:
-    application = Application.builder().token(token).build()
-
-    application.add_handler(CommandHandler("start", start))
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, respond))
-
-    return application
+def create_app(token: str) -> Updater:
+    updater = Updater(token, use_context=True)
+    
+    dispatcher = updater.dispatcher
+    dispatcher.add_handler(CommandHandler("start", start))
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, respond))
+    
+    return updater
     
