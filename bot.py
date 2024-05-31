@@ -7,37 +7,27 @@ api_hash = '559fb1f4ee7682b63a4ed3c54d3883b6' #--Enter Api Hash Here
 
 token = '7010824792:AAGX8uLjw1eN_d-TyxDHhXMTGlhtvgUADO4' #--Enter Bot Token Here.
 
-emojis = ["👍", "👎", "❤️", "🔥", "🥰", "👏", "😁", "🤔", "🤯", "😱", "🤬", "😢", "🎉", "🤩", "🤮", "💩", "🙏", "👌", "🕊", "🤡", "🥱", "🥴", "😍", "🐳", "❤‍🔥", "🌚", "🌭", "💯", "🤣", "⚡️", "🍌", "🏆", "💔", "🤨", "😐", "🍓", "🍾", "💋", "🖕", "😈", "😴", "😭", "🤓", "👻", "👨‍💻", "👀", "🎃", "🙈", "😇", "😨", "🤝", "✍️", "🤗", "🫡", "🎅", "🎄", "☃️", "💅", "🤪", "🗿", "🆒", "💘", "🙉", "🦄", "😘", "💊", "🙊", "😎", "👾", "🤷‍♂", "🤷", "🤷‍♀", "😡"]
-
 app = Client("my_bot", api_id=api_id, api_hash=api_hash, bot_token=token)
 
-@app.on_message()
-async def react_to_message(client, message):
-    chat_id = message.chat.id
-    message_id = message.id
+# Define a function to handle the /start command
+@app.on_message(filters.command("start"))
+def start(client, message):
+    message.reply_text('Hi! I am Xiu.')
+
+# Define a function to handle normal messages
+@app.on_message(filters.text)
+def respond(client, message):
+    user_message = message.text.lower()
     
-    # Choose a random emoji from the list
-    random_emoji = random.choice(emojis)
-    
-    url = f'https://api.telegram.org/bot{token}/setMessageReaction'
-
-    # Parameters for the request
-    params = {
-        'chat_id': chat_id,
-        'message_id': message_id,
-        'reaction': [{
-            "type": "emoji",
-            "emoji": random_emoji
-        }]
-    }
-
-    response = requests.post(url, json=params)
-
-    if response.status_code == 200:
-        print("Reaction set successfully!")
-        print("Response content:", response.content)
+    # Define responses based on user messages
+    if 'hi' in user_message:
+        message.reply_text('Hi! ဘာလာရှာတာလည်း?')
+    elif 'lee' in user_message:
+        message.reply_text('Lee lar Kmkl')
+    elif 'နေကောင်းလား'  in user_message:
+        message.reply_text("ကောင်းတယ်")
+    # Add more response conditions here...
     else:
-        print(f"Failed to set reaction. Status code: {response.status_code}")
-        print("Response content:", response.content)
-    
+        message.reply_text("လူနားလည်အောင်ပြော")
+
 app.run()
