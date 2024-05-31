@@ -1,54 +1,43 @@
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from pyrogram import Client, filters
+import requests
+import random
 
-# Define a function to handle the /start command
-def start(update, context):
-    update.message.reply_text('Hi! I am Xiu.')
+api_id = 26480985 #--Add your Api Id here
+api_hash = '56c935fae1c5c86ba5a3af655f8caa9d' #--Enter Api Hash Here
 
-# Define a function to handle normal messages
-def respond(update, context):
-    user_message = update.message.text.lower()
+token = '7195594057:AAHfeGa1M11mAVFOo8SfUDYPZG-vIAx8_Ow' #--Enter Bot Token Here.
+
+emojis = ["👍", "👎", "❤️", "🔥", "🥰", "👏", "😁", "🤔", "🤯", "😱", "🤬", "😢", "🎉", "🤩", "🤮", "💩", "🙏", "👌", "🕊", "🤡", "🥱", "🥴", "😍", "🐳", "❤‍🔥", "🌚", "🌭", "💯", "🤣", "⚡️", "🍌", "🏆", "💔", "🤨", "😐", "🍓", "🍾", "💋", "🖕", "😈", "😴", "😭", "🤓", "👻", "👨‍💻", "👀", "🎃", "🙈", "😇", "😨", "🤝", "✍️", "🤗", "🫡", "🎅", "🎄", "☃️", "💅", "🤪", "🗿", "🆒", "💘", "🙉", "🦄", "😘", "💊", "🙊", "😎", "👾", "🤷‍♂", "🤷", "🤷‍♀", "😡"]
+
+app = Client("my_bot", api_id=api_id, api_hash=api_hash, bot_token=token)
+
+@app.on_message()
+async def react_to_message(client, message):
+    chat_id = message.chat.id
+    message_id = message.id
     
-    # Define responses based on user messages
-    if 'hi' in user_message:
-        update.message.reply_text('Hi! ဘာလာရှာတာလည်း?')
-    elif 'lee' in user_message:
-        update.message.reply_text('Lee lar Kmkl')
-    elif 'နေကောင်းလား' in user_message:
-        update.message.reply_text("ကောင်းတယ်")
-    elif 'ဘယ်သူလည်း' in user_message:
-        update.message.reply_text("မင်းဖေ")
-    elif 'ကောင်မလေး' in user_message:
-        update.message.reply_text(" S FA ကောင်")
-    elif 'ကောင်လေး' in user_message:
-        update.message.reply_text(" ဘဲပစ်မ ")
-    elif 'စားပြီးပြီလား' in user_message:
-        update.message.reply_text(" မစားရသေးဘူး၊ကျွေးမှာလား? ")
-    elif 'ဘာလုပ်' in user_message:
-        update.message.reply_text("စော်နဲ့ချက်")
-    elif 'ေစာ်ရှိလား' in user_message:
-        update.message.reply_text("သုံးယောက်တောင် ")
-    elif 'ဘဲရှိလား' in user_message:
-        update.message.reply_text(" သုံးကောင်ရှိ ")
-    elif 'နာမည်ဘယ်လို‌ေခါ်လည်း' in user_message:
-        update.message.reply_text(" ဆရာကြီး")
-    elif '‌ေစာ်ရှာ‌ေပး' in user_message:
-        update.message.reply_text(" ငှက်ပျောပင်စိုက်")
-    elif 'ချစ်လား' in user_message:
-        update.message.reply_text(" သေလိုက် ")
-    elif 'ချစ်တယ်' in user_message:
-        update.message.reply_text("ကောင်မလေးရှိတယ် ")
-    elif 'ကောင်မလေးရှာ‌ေပး' in user_message:
-        update.message.reply_text(" ငှက်ပျောပင်စိုက် ")
+    # Choose a random emoji from the list
+    random_emoji = random.choice(emojis)
+    
+    url = f'https://api.telegram.org/bot{token}/setMessageReaction'
+
+    # Parameters for the request
+    params = {
+        'chat_id': chat_id,
+        'message_id': message_id,
+        'reaction': [{
+            "type": "emoji",
+            "emoji": random_emoji
+        }]
+    }
+
+    response = requests.post(url, json=params)
+
+    if response.status_code == 200:
+        print("Reaction set successfully!")
+        print("Response content:", response.content)
     else:
-        update.message.reply_text("လူနားလည်အောင်ပြော")
-
-# Function to create the application and add handlers
-def create_app(token: str) -> Updater:
-    updater = Updater(token, use_context=True)
+        print(f"Failed to set reaction. Status code: {response.status_code}")
+        print("Response content:", response.content)
     
-    dispatcher = updater.dispatcher
-    dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, respond))
-    
-    return updater
-    
+app.run()
