@@ -16,8 +16,8 @@ def hello_world():
 # Define a route for Telegram webhook
 @app.route('/webhook', methods=['POST'])
 def webhook() -> str:
-    update = telegram_bot_app.update_queue.get_update(request.get_json(force=True))
-    telegram_bot_app.process_update(update)
+    update = telegram_bot_app.bot.get_updates([request.get_json()])
+    telegram_bot_app.dispatcher.process_update(update[0])
     return 'ok'
 
 # Run the application
