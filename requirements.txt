@@ -1,0 +1,5 @@
+requests
+pyrogram
+random
+Flask
+gunicorn
