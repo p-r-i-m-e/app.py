@@ -1,25 +1,13 @@
-from flask import Flask, request
-from bot import create_app
+from flask import Flask
 
 # Create a Flask application
 app = Flask(__name__)
 
-# Initialize the bot application
-bot_token = "010824792:AAGX8uLjw1eN_d-TyxDHhXMTGlhtvgUADO4"  # Replace with your actual bot token
-telegram_bot_app = create_app(bot_token)
-
 # Define a route for the homepage
 @app.route('/')
 def hello_world():
-    return 'This Bot is made by Ezikel'
-
-# Define a route for Telegram webhook
-@app.route('/webhook', methods=['POST'])
-def webhook() -> str:
-    update = telegram_bot_app.bot.get_updates([request.get_json()])
-    telegram_bot_app.dispatcher.process_update(update[0])
-    return 'ok'
+    return 'This bot is made by Ezikel '
 
 # Run the application
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000)
+    app.run()
