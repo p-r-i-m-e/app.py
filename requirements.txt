@@ -1,9 +1,2 @@
-requests
-pyrogram
-random
-Flask
-gunicorn
-Updater
-CommandHandler
-MessageHandler
-Filters
+Flask==2.3.2
+python-telegram-bot==20.0
