@@ -3,3 +3,7 @@ pyrogram
 random
 Flask
 gunicorn
+Updater
+CommandHandler
+MessageHandler
+Filters
