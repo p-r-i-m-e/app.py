@@ -1,9 +1,9 @@
 from pyrogram import Client, filters
+import re
 
 api_id = 23502077  # --Add your Api Id here
 api_hash = '559fb1f4ee7682b63a4ed3c54d3883b6'  # --Enter Api Hash Here
-
-token = '7010824792:AAGX8uLjw1eN_d-TyxDHhXMTGlhtvgUADO4'  # --Enter Bot Token Here.
+token = '7010824792:AAGX8uLjw1eN_d-TyxDHhXMTGlhtvgUADO4'  # --Enter Bot Token Here
 
 app = Client("my_bot", api_id=api_id, api_hash=api_hash, bot_token=token)
 
@@ -12,10 +12,17 @@ app = Client("my_bot", api_id=api_id, api_hash=api_hash, bot_token=token)
 def start(client, message):
     message.reply_text('Hi! I am Ezikel.')  
 
+# Function to get the first sentence from a message
+def get_first_sentence(text):
+    # Use regular expression to split text into sentences
+    sentences = re.split(r'(?<=[.!?])\s+', text)
+    return sentences[0] if sentences else text
+
 # Define a function to handle normal messages
 @app.on_message(filters.text & ~filters.me)
 def respond(client, message):
     user_message = message.text.lower()
+    user_message = get_first_sentence(user_message)
     
     # Define responses based on user messages
     if 'hi' in user_message:
