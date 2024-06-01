@@ -1,19 +1,19 @@
 from pyrogram import Client, filters
 
-api_id = 23502077 #--Add your Api Id here
-api_hash = '559fb1f4ee7682b63a4ed3c54d3883b6' #--Enter Api Hash Here
+api_id = 23502077  # --Add your Api Id here
+api_hash = '559fb1f4ee7682b63a4ed3c54d3883b6'  # --Enter Api Hash Here
 
-token = '7010824792:AAGX8uLjw1eN_d-TyxDHhXMTGlhtvgUADO4' #--Enter Bot Token Here.
+token = '7010824792:AAGX8uLjw1eN_d-TyxDHhXMTGlhtvgUADO4'  # --Enter Bot Token Here.
 
 app = Client("my_bot", api_id=api_id, api_hash=api_hash, bot_token=token)
 
 # Define a function to handle the /start command
-@app.on_message(filters.command("start"))
+@app.on_message(filters.command("start") & ~filters.me)
 def start(client, message):
     message.reply_text('Hi! I am Ezikel.')  
 
 # Define a function to handle normal messages
-@app.on_message(filters.text)
+@app.on_message(filters.text & ~filters.me)
 def respond(client, message):
     user_message = message.text.lower()
     
@@ -22,7 +22,7 @@ def respond(client, message):
         message.reply_text('Hi! ဘာလာရှာတာလည်း?')
     elif 'lee' in user_message:
         message.reply_text('Lee lar Kmkl')
-    elif 'နေကောင်းလား'  in user_message:
+    elif 'နေကောင်းလား' in user_message:
         message.reply_text("ကောင်းတယ်")
     elif 'ဘယ်သူလည်း ' in user_message:
         message.reply_text("မင်းဖေ")
