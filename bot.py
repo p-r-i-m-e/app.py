@@ -10,7 +10,7 @@ app = Client("my_bot", api_id=api_id, api_hash=api_hash, bot_token=token)
 # Define a function to handle the /start command
 @app.on_message(filters.command("start") & ~filters.me)
 def start(client, message):
-    message.reply_text('Hi! I am Ezikel.')  
+    message.reply_text('Hi! I am XiuLou Bot.')  
 
 # Function to get the first sentence from a message
 def get_first_sentence(text):
