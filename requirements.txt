@@ -3,3 +3,4 @@ TgCrypto
 Flask
 gunicorn
 requests
+emoji
