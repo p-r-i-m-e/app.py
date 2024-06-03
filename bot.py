@@ -70,7 +70,7 @@ def respond(client, message):
         'lee': {
             'keywords': ['lee'],
             'response': 'Lee lar Kmkl'
-        }
+        },
             'love': {
             'keywords': ['ချစ်လား', 'ချစ်တယ်'],
             'response':   'သေလိုက်'
