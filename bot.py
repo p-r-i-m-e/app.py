@@ -26,18 +26,18 @@ def message():
     if any(char in message_text for char in ['😊', '🚀', '🎉', '🌟', '🐱', '🌈']):
         return "I recognized that emoji! 😊"
     else:
-        emojis = ['😊', '🚀', '🎉', '🌟', '🐱', '🤪','💠','🔒,'🇲🇲',,'😁','🌚','😶','😅','🐯','😂','😄','🫤','😠','😡','🥰 ','🤤','😛','🥺','😝','🤭','😎','😸']
+        emojis = ['😊', '🚀', '🎉', '🌟', '🐱', '🤪','💠', '🔒' , '🇲🇲', '😁' , ' 🌚', '😶' ,'😅' ,'🐯 ', '😂', '😄' , '🫤', '😠','😡' , '🥰 ','🤤' , ' 😛', '🥺' , ' 😝' , ' 🤭', ' 😎' , ' 😸' ]
         random_emoji = random.choice(emojis)
         return random_emoji
 
 @tg_app.on_message(filters.command("start") & filters.private)
 def start_command(client, message):
     keyboard = [
-        [InlineKeyboardButton("Chinese Anime", callback_data='1')],
-        [InlineKeyboardButton("သီချင်း", callback_data='2')],
-        [InlineKeyboardButton("ဘလာ 3", url='https://t.me/ongoingbyotakuzonemm/51')],
-        [InlineKeyboardButton("ဘလာ 4", callback_data='4')],
-        [InlineKeyboardButton("ဘလာ 5", callback_data='5')],
+        [InlineKeyboardButton("Chinese Anime", callback_data='1')] ,
+        [InlineKeyboardButton("သီချင်း", callback_data='2')] ,
+        [InlineKeyboardButton("ဘလာ 3", url= 'https://t.me/ongoingbyotakuzonemm/51')] ,
+        [InlineKeyboardButton("ဘလာ 4", callback_data=' 4' ) ],
+        [InlineKeyboardButton("ဘလာ 5", callback_data='5 ') ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     message.reply_text('မဂ်လာပါ ', reply_markup=reply_markup)
@@ -48,8 +48,8 @@ def button(client, query):
 
     if query.data == '1':
         keyboard = [
-            [InlineKeyboardButton("3D Anime", url='https://t.me/addlist/Ijx6HrpeLO5lNTNl')],
-            [InlineKeyboardButton("2D Anime", url='https://t.me/addlist/Ijx6HrpeLO5lNTNl')]
+            [InlineKeyboardButton("3D Anime", url= ' https://t.me/addlist/Ijx6HrpeLO5lNTNl')],
+            [InlineKeyboardButton("2D Anime", url=' https://t.me/addlist/Ijx6HrpeLO5lNTNl' )]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         query.message.edit_text(text="ရွေးပါ ", reply_markup=reply_markup)
