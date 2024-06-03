@@ -1,12 +1,36 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import re
+import random 
+from flask import Flask
 
 api_id = 23502077  # Add your API ID here
 api_hash = '559fb1f4ee7682b63a4ed3c54d3883b6'  # Enter API Hash here
 token = '7010824792:AAGX8uLjw1eN_d-TyxDHhXMTGlhtvgUADO4'  # Enter Bot Token here
 
 app = Client("my_bot", api_id=api_id, api_hash=api_hash, bot_token=token, workers=10)
+
+app = Flask(__name__)
+
+# Function to handle the /start command
+@app.route('/start', methods=['POST'])
+def start():
+    return "Send any message to get a random emoji!"
+
+# Function to handle regular messages
+@app.route('/message', methods=['POST'])
+def message():
+    data = request.json
+    message_text = data['message']['text']
+    # Check if the message is an emoji
+    if any(char in message_text for char in ['😊', '🚀', '🎉', '🌟', '🐱', '🌈']):
+        return "I recognized that emoji! 😊"
+    else:
+        # List of emojis
+        emojis = ['😊', '🚀', '🎉', '🌟', '🐱', '🌈']
+        # Select a random emoji
+        random_emoji = random.choice(emojis)
+        return random_emoji
 
 @app.on_message(filters.command("start") & filters.private)
 def start(client, message):
