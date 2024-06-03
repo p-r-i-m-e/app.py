@@ -1,8 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-import re
-import random 
-from flask import Flask
+from flask import Flask, request
+import random
 
 api_id = 23502077  # Add your API ID here
 api_hash = '559fb1f4ee7682b63a4ed3c54d3883b6'  # Enter API Hash here
@@ -10,15 +9,15 @@ token = '7010824792:AAGX8uLjw1eN_d-TyxDHhXMTGlhtvgUADO4'  # Enter Bot Token here
 
 app = Client("my_bot", api_id=api_id, api_hash=api_hash, bot_token=token, workers=10)
 
-app = Flask(__name__)
+flask_app = Flask(__name__)
 
 # Function to handle the /start command
-@app.route('/start', methods=['POST'])
+@flask_app.route('/start', methods=['POST'])
 def start():
     return "Send any message to get a random emoji!"
 
 # Function to handle regular messages
-@app.route('/message', methods=['POST'])
+@flask_app.route('/message', methods=['POST'])
 def message():
     data = request.json
     message_text = data['message']['text']
@@ -33,7 +32,7 @@ def message():
         return random_emoji
 
 @app.on_message(filters.command("start") & filters.private)
-def start(client, message):
+def start_command(client, message):
     keyboard = [
         [InlineKeyboardButton("Chinese Anime", callback_data='1')],
         [InlineKeyboardButton("သီချင်း", callback_data='2')],
@@ -55,7 +54,7 @@ def button(client, query):
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         query.message.edit_text(text="ရွေးပါ ", reply_markup=reply_markup)
-    elif query.data == 'option_2':
+    elif query.data == '2':
         response_text = "2D Anime"
         query.message.edit_text(text=response_text)
     else:
@@ -67,6 +66,10 @@ def button(client, query):
         }.get(query.data, "တခုရွေးပါ")
         
         response_text = f"ဒီမှာ {button_text}: [ နှိပ်ပါ ](https://example.com/{button_text.lower().replace(' ', '_')})"
+
+if __name__ == '__main__':
+    flask_app.run()
+
         
         # Check if the message is forwarded from another chat
         if query.message.forward_from_chat:
