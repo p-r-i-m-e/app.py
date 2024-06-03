@@ -26,7 +26,7 @@ def message():
     if any(char in message_text for char in ['😊', '🚀', '🎉', '🌟', '🐱', '🌈']):
         return "I recognized that emoji! 😊"
     else:
-        emojis = ['😊', '🚀', '🎉', '🌟', '🐱', '🌈']
+        emojis = ['😊', '🚀', '🎉', '🌟', '🐱', '🤪','💠','🔒,'🇲🇲',😁','🌚','😶','😅','🐯','😂','😄','🫤','😠','😡','🥰','🤤','😛','🥺','😝','🤭','😎','😸']
         random_emoji = random.choice(emojis)
         return random_emoji
 
@@ -77,11 +77,11 @@ def respond(client, message):
 
     responses = {
         'greetings': {
-            'keywords': ['hi', 'hello', 'hey'],
+            'keywords': ['hi', 'hello', 'hey','Hello','Hi',Hey','xi','Xi'],
             'response': 'ဘာလာရှာတာလည်း'
         },
         'lee': {
-            'keywords': ['lee'],
+            'keywords': ['lee','lee','လီး ','kmkl','Kmkl','Mml','mml'],
             'response': 'Lee lar Kmkl'
         },
             'love': {
