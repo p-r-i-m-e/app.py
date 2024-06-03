@@ -26,21 +26,21 @@ def message():
     if any(char in message_text for char in ['😊', '🚀', '🎉', '🌟', '🐱', '🌈']):
         return "I recognized that emoji! 😊"
     else:
-        emojis = ['😊', '🚀', '🎉', '🌟', '🐱', '🤪','💠', '🔒' , '🇲🇲', '😁' , ' 🌚', '😶' ,'😅' ,'🐯 ', '😂', '😄' , '🫤', '😠','😡' , '🥰 ','🤤' , ' 😛', '🥺' , ' 😝' , ' 🤭', ' 😎' , ' 😸' ]
+        emojis = ['😊', '🚀', '🎉', '🌟', '🐱', '🤪', '💠', '🔒', '🇲🇲', '😁', '🌚', '😶', '😅', '🐯', '😂', '😄', '🫤', '😠', '😡', '🥰', '🤤', '😛', '🥺', '😝', '🤭', '😎', '😸']
         random_emoji = random.choice(emojis)
         return random_emoji
 
 @tg_app.on_message(filters.command("start") & filters.private)
 def start_command(client, message):
     keyboard = [
-        [InlineKeyboardButton("Chinese Anime", callback_data='1')] ,
-        [InlineKeyboardButton("သီချင်း", callback_data='2')] ,
-        [InlineKeyboardButton("ဘလာ 3", url= 'https://t.me/ongoingbyotakuzonemm/51')] ,
-        [InlineKeyboardButton("ဘလာ 4", callback_data=' 4' ) ],
-        [InlineKeyboardButton("ဘလာ 5", callback_data='5 ') ],
+        [InlineKeyboardButton("Chinese Anime", callback_data='1')],
+        [InlineKeyboardButton("သီချင်း", callback_data='2')],
+        [InlineKeyboardButton("ဘလာ 3", url='https://t.me/ongoingbyotakuzonemm/51')],
+        [InlineKeyboardButton("ဘလာ 4", callback_data='4')],
+        [InlineKeyboardButton("ဘလာ 5", callback_data='5')],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    message.reply_text('မဂ်လာပါ ', reply_markup=reply_markup)
+    message.reply_text('မဂ်လာပါ', reply_markup=reply_markup)
 
 @tg_app.on_callback_query()
 def button(client, query):
@@ -48,11 +48,11 @@ def button(client, query):
 
     if query.data == '1':
         keyboard = [
-            [InlineKeyboardButton("3D Anime", url= ' https://t.me/addlist/Ijx6HrpeLO5lNTNl')],
-            [InlineKeyboardButton("2D Anime", url=' https://t.me/addlist/Ijx6HrpeLO5lNTNl' )]
+            [InlineKeyboardButton("3D Anime", url='https://t.me/addlist/Ijx6HrpeLO5lNTNl')],
+            [InlineKeyboardButton("2D Anime", url='https://t.me/addlist/Ijx6HrpeLO5lNTNl')]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
-        query.message.edit_text(text="ရွေးပါ ", reply_markup=reply_markup)
+        query.message.edit_text(text="ရွေးပါ", reply_markup=reply_markup)
     elif query.data == '2':
         response_text = "2D Anime"
         query.message.edit_text(text=response_text)
@@ -62,7 +62,7 @@ def button(client, query):
             '2': "သီချင်း",
             '4': "ဘလာ 4",
             '5': "ဘလာ 5"
-        }.get(query.data, "တခုရွေးပါ")        
+        }.get(query.data, "တခုရွေးပါ")
         response_text = f"ဒီမှာ {button_text}: [နှိပ်ပါ](https://example.com/{button_text.lower().replace(' ', '_')})"
         query.message.edit_text(text=response_text)
 
@@ -77,22 +77,22 @@ def respond(client, message):
 
     responses = {
         'greetings': {
-            'keywords': ['hi', 'hello', 'hey','Hello','Hi',Hey','xi','Xi'],
+            'keywords': ['hi', 'hello', 'hey', 'hello', 'hi', 'hey', 'xi', 'xi'],
             'response': 'ဘာလာရှာတာလည်း'
         },
         'lee': {
-            'keywords': ['lee','lee','လီး ','kmkl','Kmkl','Mml','mml'],
+            'keywords': ['lee', 'lee', 'လီး', 'kmkl', 'kmkl', 'mml', 'mml'],
             'response': 'Lee lar Kmkl'
         },
-            'love': {
+        'love': {
             'keywords': ['ချစ်လား', 'ချစ်တယ်'],
-            'response':   'သေလိုက်'
+            'response': 'သေလိုက်'
         },
-         'girl':{
-            'keywords': ['ကောင်မလေးလိုချင်တယ်','girlfriend need','ကောင်လေးလိုချင်တယ်, boyfriend need'],
+        'girl': {
+            'keywords': ['ကောင်မလေးလိုချင်တယ်', 'girlfriend need', 'ကောင်လေးလိုချင်တယ်', 'boyfriend need'],
             'response': 'FA ကောင်'
         },
-                'food': {
+        'food': {
             'keywords': ['စားပြီးပြီလား'],
             'response': "မစားရသေးဘူး၊ကျွေးမှာလား?"
         },
@@ -101,15 +101,15 @@ def respond(client, message):
             'response': 'စော်နဲ့ချက်'
         },
         'girl_exists': {
-            'keywords': ['စော်ရှိလား','ကောင်မလေးရှိလား' ],
+            'keywords': ['စော်ရှိလား', 'ကောင်မလေးရှိလား'],
             'response': "သုံးယောက်တောင်"
         },
         'duck_exists': {
             'keywords': ['ဘဲရှိလား'],
             'response': 'သုံးကောင်ရှိတယ်'
         },
-        'name' :{
-            'keywords': [ 'နာမည်' , 'နာမည်ဘယ်လိုခေါ်လည်း', 'name', 'Name' ],
+        'name': {
+            'keywords': ['နာမည်', 'နာမည်ဘယ်လိုခေါ်လည်း', 'name', 'name'],
             'response': "ဆရာကြီး"
         },
         'find_girl': {
@@ -133,4 +133,3 @@ def run_flask():
 if __name__ == '__main__':
     threading.Thread(target=run_flask).start()
     tg_app.run()
-    
