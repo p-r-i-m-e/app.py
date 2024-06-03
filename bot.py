@@ -66,10 +66,6 @@ def button(client, query):
         }.get(query.data, "တခုရွေးပါ")
         
         response_text = f"ဒီမှာ {button_text}: [ နှိပ်ပါ ](https://example.com/{button_text.lower().replace(' ', '_')})"
-
-if __name__ == '__main__':
-    flask_app.run()
-
         
         # Check if the message is forwarded from another chat
         if query.message.forward_from_chat:
