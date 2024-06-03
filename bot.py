@@ -77,11 +77,11 @@ def respond(client, message):
 
     responses = {
         'greetings': {
-            'keywords': ['hi', 'hello', 'hey', 'hello', 'hi', 'hey', 'xi', 'xi'],
+            'keywords': ['hi', 'hello', 'hey'],
             'response': 'ဘာလာရှာတာလည်း'
         },
         'lee': {
-            'keywords': ['lee', 'lee', 'လီး', 'kmkl', 'kmkl', 'mml', 'mml'],
+            'keywords': ['lee', 'လီး', 'kmkl', 'mml'],
             'response': 'Lee lar Kmkl'
         },
         'love': {
@@ -109,7 +109,7 @@ def respond(client, message):
             'response': 'သုံးကောင်ရှိတယ်'
         },
         'name': {
-            'keywords': ['နာမည်', 'နာမည်ဘယ်လိုခေါ်လည်း', 'name', 'name'],
+            'keywords': ['နာမည်', 'နာမည်ဘယ်လိုခေါ်လည်း', 'name'],
             'response': "ဆရာကြီး"
         },
         'find_girl': {
@@ -123,6 +123,9 @@ def respond(client, message):
             message.reply_text(data['response'])
             return
 
+    send_random_emoji(message)
+
+def send_random_emoji(message):
     emojis = ['😊', '🚀', '🎉', '🌟', '🐱', '🌈']
     random_emoji = random.choice(emojis)
     message.reply_text(random_emoji)
